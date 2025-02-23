@@ -4,38 +4,28 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the source code from your version control system
-                checkout scm
+                checkout https://github.com/Valentin2701/Horizons
             }
         }
 
         stage('Restore Dependencies') {
             steps {
                 // Restore .NET dependencies
-                script {
-                    def solutionFile = "YourSolutionName.sln" // Replace with your solution file
-                    sh "dotnet restore ${solutionFile}"
-                }
+                dotnet restore
             }
         }
 
         stage('Build') {
             steps {
                 // Build the project
-                script {
-                    def solutionFile = "YourSolutionName.sln" // Replace with your solution file
-                    sh "dotnet build ${solutionFile} -c Release --no-restore"
-                }
+                dotnet build --no-restore
             }
         }
 
         stage('Test') {
             steps {
                 // Run tests
-                script {
-                    def testProject = "YourTestProject.csproj" // Replace with your test project file
-                    sh "dotnet test ${testProject} --no-build --verbosity normal"
-                }
+                dotnet test --no-build --verbosity normal
             }
         }
     }
