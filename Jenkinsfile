@@ -4,28 +4,28 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout https://github.com/Valentin2701/Horizons
+                checkout scm
             }
         }
 
         stage('Restore Dependencies') {
             steps {
                 // Restore .NET dependencies
-                dotnet restore
+                sh "dotnet restore"
             }
         }
 
         stage('Build') {
             steps {
                 // Build the project
-                dotnet build --no-restore
+                sh "dotnet build --no-restore"
             }
         }
 
         stage('Test') {
             steps {
                 // Run tests
-                dotnet test --no-build --verbosity normal
+                sh "dotnet test --no-build --verbosity normal"
             }
         }
     }
