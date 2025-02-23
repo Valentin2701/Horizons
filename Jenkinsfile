@@ -11,21 +11,21 @@ pipeline {
         stage('Restore Dependencies') {
             steps {
                 // Restore .NET dependencies
-                sh "dotnet restore Horizons.sln"
+                bat "dotnet restore Horizons.sln"
             }
         }
 
         stage('Build') {
             steps {
                 // Build the project
-                sh "dotnet build Horizons.sln --no-restore"
+                bat "dotnet build Horizons.sln --no-restore"
             }
         }
 
         stage('Test') {
             steps {
                 // Run tests
-                sh "dotnet test --no-build --verbosity normal"
+                bat "dotnet test --no-build --verbosity normal"
             }
         }
     }
