@@ -11,14 +11,14 @@ pipeline {
         stage('Restore Dependencies') {
             steps {
                 // Restore .NET dependencies
-                sh "dotnet restore"
+                sh "dotnet restore Horizons.sln"
             }
         }
 
         stage('Build') {
             steps {
                 // Build the project
-                sh "dotnet build --no-restore"
+                sh "dotnet build Horizons.sln --no-restore"
             }
         }
 
